@@ -1,0 +1,142 @@
+/* Loading overlay */
+#loadingOverlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: #222;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+
+  opacity: 1;
+  transition: opacity 0.5s ease;
+  pointer-events: all;
+}
+
+#loadingOverlay.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.spinner {
+  border: 6px solid #eee;
+  border-top: 6px solid #555;
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+body, html {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+  background: #fafafa;
+  font-family: Arial, sans-serif;
+}
+
+
+
+#toolbar label {
+  font-size: 16px;
+  user-select: none;
+}
+
+#toolbar input[type="color"],
+#toolbar input[type="range"] {
+  cursor: pointer;
+}
+
+#toolbar button {
+  cursor: pointer;
+  padding: 4px 8px;
+  font-size: 14px;
+  border: none;
+  border-radius: 4px;
+  background: #4d9cd1;
+  transition: background-color 0.2s;
+}
+
+#toolbar button:hover {
+  background: #eee;
+}
+
+canvas {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
+  touch-action: none;
+  cursor: crosshair;
+}
+
+
+.btn{
+  font-size: 24px;
+}
+
+#colorPicker{
+  border-radius: 5%;
+}
+
+#colorPalette {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.color-swatch {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  cursor: pointer;
+  box-shadow: 0 0 3px rgba(0,0,0,0.15);
+  transition: border-color 0.25s, transform 0.15s;
+}
+
+.color-swatch:hover {
+  transform: scale(1.2);
+}
+
+.color-swatch.selected {
+  border-color: #333;
+}
+
+#colorPaletteContainer {
+  position: fixed;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #f0f0f0cc;
+  padding: 8px 12px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  user-select: none;
+  z-index: 1000;
+}
+
+#toolbar {
+  position: fixed;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-image: radial-gradient( circle 369px at -2.9% 12.9%,  rgba(247,234,163,1) 0%, rgba(236,180,238,0.56) 46.4%, rgba(163,203,247,1) 100.7% );
+  padding: 10px 16px;
+  border-radius: 10px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  user-select: none;
+  z-index: 1000;
+}

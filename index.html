@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Open Draw</title>
+  <link rel="stylesheet" href="index.css" />
+</head>
+<body>
+
+  <!-- Loading overlay -->
+  <div id="loadingOverlay">
+    <div class="spinner"></div>
+  </div>
+
+ <div id="colorPaletteContainer">
+    <div id="colorPalette"></div>
+    <!-- Optional custom color input -->
+    <label style="margin-left:12px; user-select:none;">
+      Custom:
+      <input type="color" id="customColorPicker" />
+    </label>
+  </div>
+
+  <div id="toolbar">
+    <!-- Your toolbar buttons, brush size, zoom, save/load/clear etc -->
+      <label>
+      Size:
+      <input type="range" id="brushSize" min="1" max="50" value="5" />
+    </label>
+
+    <button id="zoomInBtn" class="btn">+</button>
+    <button id="zoomOutBtn" class="btn">-</button>
+    <button id="clearBtn">Clear</button>
+    <button id="saveBtn">Save</button>
+    <button id="loadBtn">Load</button>
+    <label for="productname">Open Draw</label>
+    
+  </div>
+
+
+   
+  </div>
+
+  <canvas id="canvas" style="display:none;"></canvas>
+
+  <script src="index.js"></script>
+</body>
+</html>
