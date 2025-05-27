@@ -3,7 +3,6 @@ window.addEventListener('load', () => {
   const toolbar = document.getElementById('toolbar');
   const canvas = document.getElementById('canvas');
 
-  // Show overlay for 2 seconds, then fade out and init app
   setTimeout(() => {
     overlay.classList.add('hidden');
     setTimeout(() => {
@@ -11,7 +10,7 @@ window.addEventListener('load', () => {
       toolbar.style.display = 'flex';
       canvas.style.display = 'block';
       initDrawingApp();
-    }, 500); // fade duration
+    }, 500);
   }, 2000);
 });
 
@@ -35,7 +34,7 @@ function initDrawingApp() {
     '#bcf60c', '#fabebe', '#008080', '#e6beff',
   ];
 
-  let brushColor = paletteColors[0]; // default black
+  let brushColor = paletteColors[0]; 
   let brushSize = +brushSizeInput.value;
   let scale = 1;
   let offsetX = 0;
@@ -48,7 +47,6 @@ function initDrawingApp() {
   let strokes = [];
   let currentStroke = null;
 
-  // Setup canvas size to viewport with devicePixelRatio
   function resizeCanvas() {
     canvas.width = canvas.clientWidth * window.devicePixelRatio;
     canvas.height = canvas.clientHeight * window.devicePixelRatio;
@@ -60,7 +58,6 @@ function initDrawingApp() {
   window.addEventListener('resize', resizeCanvas);
   resizeCanvas();
 
-  // Create swatches in palette
   paletteColors.forEach(color => {
     const swatch = document.createElement('div');
     swatch.className = 'color-swatch';
@@ -69,7 +66,7 @@ function initDrawingApp() {
     swatch.addEventListener('click', () => {
       brushColor = color;
       updateSelectedSwatch();
-      customColorPicker.value = brushColor; // sync custom picker
+      customColorPicker.value = brushColor;
     });
     colorPalette.appendChild(swatch);
   });
@@ -85,8 +82,6 @@ function initDrawingApp() {
     });
   }
 
-  // Normalize color strings (e.g. rgb to hex) for comparison
-  // Simple approach: create a temp element to get computed color in rgb format
   function normalizeColor(color) {
     const temp = document.createElement('div');
     temp.style.color = color;
@@ -154,9 +149,8 @@ function initDrawingApp() {
     }
   }
 
-  // Drawing and panning handlers
+
   canvas.addEventListener('mousedown', e => {
-    // Middle mouse button or shift = pan mode
     if (e.button === 1 || e.shiftKey) {
       isPanning = true;
       panStart = { x: e.clientX, y: e.clientY };
@@ -164,7 +158,6 @@ function initDrawingApp() {
       return;
     }
 
-    // Left mouse = draw
     if (e.button !== 0) return;
     isDrawing = true;
     const pos = screenToWorld(e.offsetX, e.offsetY);
@@ -228,7 +221,60 @@ function initDrawingApp() {
     redraw();
   });
 
-  // Zoom with ctrl + mouse wheel
+  canvas.addEventListener('touchstart', e => {
+    e.preventDefault();
+    if (e.touches.length !== 1) return;
+    const touch = e.touches[0];
+    const rect = canvas.getBoundingClientRect();
+    const offsetX = touch.clientX - rect.left;
+    const offsetY = touch.clientY - rect.top;
+
+    isDrawing = true;
+    const pos = screenToWorld(offsetX, offsetY);
+    currentStroke = {
+      color: brushColor,
+      size: brushSize,
+      points: [pos]
+    };
+    lastPos = pos;
+  }, { passive: false });
+
+  canvas.addEventListener('touchmove', e => {
+    e.preventDefault();
+    if (!isDrawing) return;
+    if (e.touches.length !== 1) return;
+    const touch = e.touches[0];
+    const rect = canvas.getBoundingClientRect();
+    const offsetX = touch.clientX - rect.left;
+    const offsetY = touch.clientY - rect.top;
+
+    const pos = screenToWorld(offsetX, offsetY);
+    currentStroke.points.push(pos);
+    lastPos = pos;
+    redraw();
+  }, { passive: false });
+
+  canvas.addEventListener('touchend', e => {
+    e.preventDefault();
+    if (!isDrawing) return;
+    isDrawing = false;
+    if (currentStroke.points.length > 1) {
+      strokes.push(currentStroke);
+      saveToLocal();
+    }
+    currentStroke = null;
+    redraw();
+  }, { passive: false });
+
+  canvas.addEventListener('touchcancel', e => {
+    e.preventDefault();
+    if (!isDrawing) return;
+    isDrawing = false;
+    currentStroke = null;
+    redraw();
+  }, { passive: false });
+
+  
   canvas.addEventListener('wheel', e => {
     if (!e.ctrlKey) return;
     e.preventDefault();
@@ -247,7 +293,6 @@ function initDrawingApp() {
     redraw();
   }, { passive: false });
 
-  // Zoom buttons
   zoomInBtn.addEventListener('click', () => {
     const centerX = canvas.clientWidth / 2;
     const centerY = canvas.clientHeight / 2;
@@ -272,38 +317,35 @@ function initDrawingApp() {
     redraw();
   });
 
-  // Save/load buttons
   saveBtn.addEventListener('click', () => {
-    try {
-      localStorage.setItem('infiniteCanvasStrokes', JSON.stringify(strokes));
-      alert('Drawing saved locally!');
-    } catch (e) {
-      alert('Error saving drawing: ' + e.message);
-    }
+    saveToLocal();
+    alert('Drawing saved to local storage!');
   });
 
   loadBtn.addEventListener('click', () => {
     const data = localStorage.getItem('infiniteCanvasStrokes');
     if (!data) {
-      alert('No saved drawing found.');
+      alert('No saved drawing found!');
       return;
     }
     strokes = JSON.parse(data);
     redraw();
   });
 
-  // Clear button
   clearBtn.addEventListener('click', () => {
+    if (!confirm('Clear all drawing?')) return;
     strokes = [];
     currentStroke = null;
-    redraw();
     saveToLocal();
+    redraw();
   });
 
-  // Auto-load strokes on init
   const savedData = localStorage.getItem('infiniteCanvasStrokes');
   if (savedData) {
-    strokes = JSON.parse(savedData);
+    try {
+      strokes = JSON.parse(savedData);
+    } catch {}
   }
+
   redraw();
 }
