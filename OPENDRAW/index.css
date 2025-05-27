@@ -1,4 +1,4 @@
-/* Loading overlay */
+
 #loadingOverlay {
   position: fixed;
   top: 0; left: 0; right: 0; bottom: 0;
@@ -81,9 +81,7 @@ canvas {
   font-size: 24px;
 }
 
-#colorPicker{
-  border-radius: 5%;
-}
+
 
 #colorPalette {
   display: flex;
@@ -114,7 +112,7 @@ canvas {
   bottom: 10px;
   left: 50%;
   transform: translateX(-50%);
-  background: #f0f0f0cc;
+  background-image: radial-gradient( circle 369px at -2.9% 12.9%,  rgba(247,234,163,1) 0%, rgba(236,180,238,0.56) 46.4%, rgba(163,203,247,1) 100.7% );
   padding: 8px 12px;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.15);
@@ -139,4 +137,49 @@ canvas {
   gap: 16px;
   user-select: none;
   z-index: 1000;
+  font-size: 14px;
+}
+
+canvas {
+  touch-action: none;
+}
+
+#colorPaletteContainer {
+  padding: 8px 12px;
+  gap: 12px;
+  font-size: 14px; 
+}
+
+#toolbar {
+  padding: 10px 16px;
+  gap: 16px;
+  font-size: 14px; 
+}
+
+.color-swatch {
+  width: 28px;
+  height: 28px;
+}
+
+
+#brushSize {
+  width: 100px;
+  height: 24px;
+}
+
+@media (max-width: 600px) {
+  #toolbar {
+    padding: 24px 36px ;  
+    gap: 32px ;       
+    font-size: 40px;  
+  }
+  #toolbar button {
+    min-width: 86px;
+    min-height: 86px;
+    font-size: 40px;
+  }
+  #brushSize {
+    width: 180px;
+    height: 40px;
+  }
 }
