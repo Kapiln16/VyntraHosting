@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Vyntra - Code Your Future</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;700&display=swap');
+
+    * {
+      margin: 0; padding: 0; box-sizing: border-box;
+    }
+
+    body, html {
+      height: 100%;
+      font-family: 'Roboto', sans-serif;
+      background: linear-gradient(135deg, #4a00e0, #8e2de2);
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 900px;
+      text-align: center;
+      padding: 40px;
+      background: rgba(255 255 255 / 0.1);
+      border-radius: 20px;
+      box-shadow:
+        0 0 40px rgba(49, 19, 123, 0.7);
+    }
+
+    h1 {
+      font-weight: 700;
+      font-size: 4rem;
+      letter-spacing: 0.15em;
+      margin-bottom: 0.5rem;
+      color: #ffffff;
+      background: linear-gradient(45deg, #ff6a00, #ee0979);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      user-select: none;
+      text-transform: uppercase;
+    }
+
+    h2 {
+      font-weight: 300;
+      font-size: 1.8rem;
+      margin-bottom: 2rem;
+      color: #e0c9ff;
+      user-select: none;
+    }
+
+    p {
+      font-weight: 300;
+      font-size: 1.15rem;
+      max-width: 600px;
+      margin: 0 auto 3rem;
+      line-height: 1.6;
+      color: #d8caff;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 18px 55px;
+      font-weight: 700;
+      font-size: 1.3rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: white;
+      background: linear-gradient(45deg, #ff6a00, #ee0979);
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      box-shadow:
+        0 0 30px #ff6a00;
+      transition: background 0.4s ease, box-shadow 0.4s ease, transform 0.2s ease;
+      user-select: none;
+      text-decoration: none;
+    }
+
+    .btn:hover {
+      background: linear-gradient(45deg, #ee0979, #ff6a00);
+      box-shadow:
+        0 0 60px #ee0979;
+      transform: scale(1.05);
+      text-decoration: none;
+      color: white;
+    }
+
+    footer {
+      margin-top: 40px;
+      font-weight: 300;
+      font-size: 0.9rem;
+      color: #c8aaffcc;
+      user-select: none;
+      position: fixed;
+      bottom: 10px;
+      width: 100%;
+      text-align: center;
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 2.8rem;
+      }
+      h2 {
+        font-size: 1.2rem;
+      }
+      p {
+        font-size: 1rem;
+      }
+      .btn {
+        padding: 14px 40px;
+        font-size: 1.1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container" role="main">
+    <h1>VYNTRA</h1>
+    <h2>Code Your Future</h2>
+    <p>Join Vyntra, the innovative platform for programmers. Solve challenges, prepare for interviews, and level up your coding skills with community support and real-world problems.</p>
+    <button class="btn" aria-label="" onclick="myfunction()" >Launching Soon</button>
+  </div>
+  <footer>&copy; 2025 Vyntra.life . All rights reserved.</footer>
+  <script>
+    function myfunction(){
+        window.open(
+            "http://www.tinyurl.com/kapilpf","_blank");
+    }
+    
+  </script>
+</body>
+</html>
+
