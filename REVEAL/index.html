@@ -10,6 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <link rel="shortcut icon" href="main.ico" type="image/x-icon">
  <style>
   * {
   margin: 0;
@@ -359,26 +360,15 @@ body {
       margin-top: 10px;
     }
 
-    @media (max-width: 768px) {
-      .features {
-        flex-direction: column;
-        align-items: center;
-      }
-      .feature img{
-        width: 40px;
-        height: 35px;
-      }
-
-      .feature {
-        width: 80%;
-      }
-    }
-
      .testimonials {
       padding: 60px 20px;
       text-align: center;
       max-width: 1200px;
       margin: auto;
+    }
+
+    .testimonial-card:hover{
+      box-shadow: #0000003e 0px 0px 32px 4px;
     }
 
     .testimonials h2 {
@@ -394,12 +384,13 @@ body {
     }
 
     .testimonial-card {
-      background-color: #fff;
+      background-color: #0af20a19;
       border-radius: 16px;
       padding: 24px;
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
       position: relative;
       text-align: left;
+      transition: ease-in-out .2s;
     }
 
     .testimonial-card::before {
@@ -418,11 +409,7 @@ body {
       color: #333;
     }
 
-    .testimonial-text .highlight {
-      color: #f39c12;
-      font-weight: bold;
-    }
-
+   
     .user-info {
       display: flex;
       align-items: center;
@@ -448,11 +435,7 @@ body {
       color: #888;
     }
 
-    @media (max-width: 500px) {
-      .testimonial-card {
-        padding: 20px;
-      }
-    }
+   
 
     footer {
       background-color: #1a7c1f;
@@ -586,20 +569,134 @@ body {
     }
 
     @media (max-width: 768px) {
-      footer {
-        flex-direction: column;
-        text-align: center;
-      }
+  /* Navbar */
+  .navbar {
+    padding: 20px;
+    text-align: center;
+  }
 
-      .footer-icons {
-        justify-content: center;
-      }
+  .nav-links {
+    display: none;
+  }
 
-      .footer-form form button {
-        width: 100%;
-      }
-    }
+  .auth-buttons {
+    display: none;
+  }
 
+  .btn {
+    width: 100%;
+    height: auto;
+    font-size: 16px;
+    height: 40px;
+  }
+
+  /* Hero Section */
+  .hero {
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+    text-align: center;
+    margin-top: 0;
+    height: 85vh;
+  }
+
+  .hero-text {
+    max-width: 100%;
+  }
+
+  .hero h1 {
+    font-size: 28px;
+  }
+
+  .hero-image img {
+    display: none;
+  }
+
+  .course-info {
+    top: 10px;
+    left: 10px;
+    font-size: 14px;
+    padding: 6px 12px;
+  }
+
+  /* Learning Section */
+  .learning-section {
+    height: auto;
+    padding: 40px 20px;
+  }
+
+  .title {
+    padding-top: 20px;
+    font-size: 1.8rem;
+    width: auto;
+  }
+
+  .subtitle {
+    font-size: 1rem;
+    padding: 0 10px;
+    padding-top: 20px;
+  }
+
+  /* Card Grid */
+  .card-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Why Section + Features */
+  .features {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 20px;
+  }
+
+  .feature {
+    width: 50%;
+  }
+
+  .vyntra-card {
+    display: none;
+  }
+
+  /* Testimonials */
+  .testimonial-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .testimonial-card {
+    padding: 20px;
+  }
+
+  /* Footer */
+  footer {
+    flex-direction: column;
+    align-items: center;
+    padding: 30px 20px;
+  }
+
+  .footer-section {
+    min-width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .footer-icons a {
+    font-size: 1.4rem;
+  }
+
+  .to-top {
+    bottom: 15px;
+    right: 15px;
+    width: 40px;
+    height: 40px;
+  }
+
+  .footer-form form button {
+    width: 100%;
+  }
+}
+
+
+  
  </style>
 
 </head>
@@ -634,7 +731,7 @@ body {
       <button class="btn">Lets Begin</button>
     </div>
     <div class="hero-image">
-      <img src="https://i.ibb.co/vvqYsGqB/Untitled-design-6.png" alt="Student" />
+      <img src="bgphoto.png" alt="Student" />
     </div>
   </section>
   <main>
@@ -695,8 +792,7 @@ body {
     </div>
   </section>
   <section class="testimonials">
-    <span style="color: #ffa500; font-weight: bold;">TESTIMONIALS</span>
-    <h2>Our trusted clients</h2>
+    <h2>Success Stories</h2>
 
     <div class="testimonial-grid">
       <!-- Testimonial Card -->
